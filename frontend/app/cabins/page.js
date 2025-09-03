@@ -1,3 +1,3 @@
 export default function Page() {
-  return <h2>hello</h2>;
+  return <h2>Cabin pages</h2>;
 }
