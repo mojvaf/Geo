@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.gis",
+    "rest_framework",       
+    "rest_framework_gis", 
     'species'
 ]
 
@@ -76,7 +79,7 @@ WSGI_APPLICATION = 'birdscope.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
