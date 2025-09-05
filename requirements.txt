@@ -1,2 +1,11 @@
 Django>=4.0
-djangorestframework
+
+### PostGIS ###
+psycopg2-binary
+django[gis]
+
+### API ###
+rest_framework
+
+### to expose spatial data easily ###
+djangorestframework-gis
