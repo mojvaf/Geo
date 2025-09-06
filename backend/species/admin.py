@@ -1,3 +1,5 @@
 from django.contrib import admin
+from species.models import Bird 
 
-# Register your models here.
+admin.site.register(Bird)
+
