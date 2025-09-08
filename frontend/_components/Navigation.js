@@ -7,12 +7,11 @@ function Navigation() {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/Birds">Birds</Link>
+        <Link href="/birds">Birds</Link>
       </li>
       <li>
         <Link href="/about">About</Link>
       </li>
-      <li>Two</li>
     </ul>
   );
 }
