@@ -1,3 +1,6 @@
+import Logo from "@/_components/Logo";
+import Navigation from "@/_components/Navigation";
+
 export const metadata = {
   title: "Birds",
 };
@@ -5,7 +8,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <header>
+          <Logo />
+          <Navigation />
+        </header>
+        <main>{children}</main>
+        <footer> Copyright by The Company</footer>
+      </body>
     </html>
   );
 }
