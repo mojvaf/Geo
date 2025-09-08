@@ -1,19 +1,31 @@
 import Link from "next/link";
 
-function Navigation() {
+export default function Navigation() {
   return (
-    <ul>
-      <li>
-        <Link href="/">Home</Link>
-      </li>
-      <li>
-        <Link href="/birds">Birds</Link>
-      </li>
-      <li>
-        <Link href="/about">About</Link>
-      </li>
-    </ul>
+    <nav className="z-10 text-xl">
+      <ul className="flex gap-16 items-center">
+        <li>
+          <Link href="/" className="hover:text-accent-400 transition-colors">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/about"
+            className="hover:text-accent-400 transition-colors"
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/birds"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Birds
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
-
-export default Navigation;

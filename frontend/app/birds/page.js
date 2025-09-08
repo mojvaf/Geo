@@ -1,5 +1,9 @@
 import Logo from "@/_components/Logo";
 
+export const metadata = {
+  title: "Birds",
+};
+
 export default function Page() {
   return (
     <div>
