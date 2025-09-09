@@ -25,6 +25,14 @@ export default function Navigation() {
             Birds
           </Link>
         </li>
+        <li>
+          <Link
+            href="/account"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Account
+          </Link>
+        </li>
       </ul>
     </nav>
   );
