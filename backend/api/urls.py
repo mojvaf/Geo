@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
 
-urlpatternt = [
+urlpatterns = [
     path('birds', views.birdsView)
 ]
