@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      # Third-party apps
     "rest_framework",  
-    "django_filters"  
+    "django_filters",  
     # apps   
     'species',
     'api'
@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'postgres',
-        'USER': 'postgres',
+        'USER': 'moj',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '5432'

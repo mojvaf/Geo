@@ -1,8 +1,21 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import bg from "@/public/bg.jpg";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+      setData(await res.json());
+    })();
+  }, []);
+
+  console.log(data);
+
   return (
     <main className="mt-5">
       <Image
