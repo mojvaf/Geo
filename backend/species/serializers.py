@@ -3,6 +3,6 @@ from .models import Restaurant
 
 class RestaurantSerializer(GeoFeatureModelSerializer):
     class Meta: 
-        model = Restaurant         
-        fields = ('name',)         
-        geo_field = 'location'
+        model = Restaurant
+        geo_field = "location"   
+        fields = ("id", "name")

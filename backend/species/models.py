@@ -21,7 +21,7 @@ class Area(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
-    location = models.PointField()
+    location = models.PointField(srid=4326)
 
     def __str__(self):
         return self.name

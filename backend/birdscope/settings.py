@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      # Third-party apps
     "rest_framework",  
-    "django_filters",  
+    "django_filters",
+    'rest_framework_gis',  
     'leaflet',
     # apps   
     'species',
