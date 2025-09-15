@@ -27,10 +27,10 @@ export default function Navigation() {
         </li>
         <li>
           <Link
-            href="/account"
+            href="/adventure"
             className="hover:text-accent-400 transition-colors"
           >
-            Account
+            Your Adventures
           </Link>
         </li>
       </ul>

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import bg from "@/public/bg.jpg";
-import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
