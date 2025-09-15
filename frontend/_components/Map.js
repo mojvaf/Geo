@@ -21,7 +21,7 @@ function Map() {
       center={[51.505, -0.09]}
       zoom={13}
       scrollWheelZoom={false}
-      className="h-full w-full"
+      className="flex-1 w-full h-full"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

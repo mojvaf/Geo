@@ -3,12 +3,12 @@ import SideBar from "@/_components/SideBar";
 
 export default function AdventureLayout({ children }) {
   return (
-    <div className="bg-primary-800 flex flex-col md:flex-row h-[calc(100vh-5.1rem)]">
-      <div className="w-full md:w-[40%] bg-primary-800 px-6 py-4 flex flex-col items-center">
+    <div className="bg-primary-800 h-[calc(100vh-5.1rem)] p-[1.2rem] overscroll-y-none flex relative md:flex-row gap-2">
+      <div className="w-full md:w-[40%] flex flex-col items-center overflow-y-auto">
         <SideBar />
         {children}
       </div>
-      <div className="w-full md:w-[60%] h-full md:h-screen">
+      <div className="w-full md:flex-1 h-[60vh] md:h-full relative">
         <Map />
       </div>
     </div>
