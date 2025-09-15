@@ -1,6 +1,6 @@
 import CountryList from "@/_components/CountryList";
 
-export default function CountriesPage() {
+export default function page() {
   return (
     <div>
       <CountryList />

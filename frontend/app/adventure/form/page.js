@@ -1,6 +1,6 @@
 import Form from "@/_components/Form";
 
-export default function FormPage() {
+export default function page() {
   return (
     <div>
       <Form />
