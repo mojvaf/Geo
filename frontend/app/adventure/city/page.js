@@ -1,6 +1,6 @@
 import CityList from "@/_components/CityList";
 
-export default function CitiesPage() {
+export default function page() {
   return (
     <div>
       <CityList />

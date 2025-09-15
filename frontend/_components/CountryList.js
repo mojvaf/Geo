@@ -3,8 +3,9 @@ import CityItem from "./CityItem";
 function CountryList() {
   return (
     <div>
-      <div>This is Country list</div>
-      <CityItem />
+      <div className="text-6xl text-primary-50 mb-20 tracking-tight font-normal">
+        This is Country list
+      </div>
     </div>
   );
 }
