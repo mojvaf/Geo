@@ -1,27 +1,13 @@
 from django.db import models
 from django.contrib.gis.db import models
 
-class Bird(models.Model):
-     name = models.CharField(max_length=100)
-     scientific_name = models.CharField(max_length=150, blank=True, null=True)
-     habitat = models.CharField(max_length=100,null=True, blank=True)
 
-
-     def __str__(self):
-        return self.name
-
-class Area(models.Model):
-    coordinates = models.JSONField(blank= True,null=True)
-    name = models.CharField(max_length=150, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return f'{self.name} Area'
     
 
-class Restaurant(models.Model):
+class Adventure(models.Model):
     name = models.CharField(max_length=100)
     location = models.PointField(srid=4326)
+    description = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.name

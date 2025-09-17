@@ -1,8 +1,8 @@
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
-from .models import Restaurant
+from .models import Adventure
 
-class RestaurantSerializer(GeoFeatureModelSerializer):
+class AdventureSerializer(GeoFeatureModelSerializer):
     class Meta: 
-        model = Restaurant
+        model = Adventure
         geo_field = "location"   
-        fields = ("id", "name")
+        fields = '__all__'
