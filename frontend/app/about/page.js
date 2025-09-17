@@ -65,7 +65,7 @@ export default function About() {
             joyful, and free.
           </p>
 
-          <div>
+          <div className="py-12">
             <a
               href="/birds"
               className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
