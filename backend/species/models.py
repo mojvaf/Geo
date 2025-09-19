@@ -22,7 +22,7 @@ class Region(models.Model):
     country = models.ForeignKey(Country, on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self):
-           return str(self.country) if self.country else f"Region {self.key} or 'Unknown"
+           return str(self.country) if self.country else f"Region {self.key} or Unknown"
     
 
 class Habitat(models.Model):
