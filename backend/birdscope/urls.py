@@ -1,7 +1,7 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from species.views import AdventureViewSet, CountryViewSet, StateProvinceViewSet
+from species.views import AdventureViewSet, CountryViewSet
 from django.contrib import admin
 
 

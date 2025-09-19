@@ -1,7 +1,7 @@
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
 
-from .models import Adventure, Country, StateProvince
+from .models import Adventure, Country
 
 class AdventureSerializer(GeoFeatureModelSerializer):
     class Meta: 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from species.models import Adventure, Country,StateProvince
+from species.models import Adventure, Country
 from leaflet.admin import LeafletGeoAdmin
 
 
