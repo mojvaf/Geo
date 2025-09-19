@@ -8,7 +8,7 @@ from django.contrib import admin
 router = DefaultRouter()
 router.register(r'adventures', AdventureViewSet)
 router.register('countries', CountryViewSet)
-router.register('states', StateProvinceViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
