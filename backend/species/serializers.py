@@ -14,7 +14,4 @@ class CountrySerializer(serializers.ModelSerializer):
         model = Country
         fields = ['id','name']        
 
-class StateProvinceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StateProvince
-        fields = ["id", "name", "country"]        
+    

@@ -11,6 +11,3 @@ class CountryViewSet(viewsets.ModelViewSet):
      queryset = Country.objects.all()
      serializer_class = CountrySerializer
 
-class StateProvinceViewSet(viewsets.ModelViewSet):
-     queryset = StateProvince.objects.all()
-     serializer_class = StateProvinceSerializer     

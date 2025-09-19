@@ -15,8 +15,4 @@ class CountryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-@admin.register(StateProvince)
-class StateProvince(admin.ModelAdmin):
-     list_display = ('id', 'name', 'country')
-     list_filter = ('country',)
-     search_fields = ('name','country__name')
+
