@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Adventure, Country, StateProvince
-from .serializers import AdventureSerializer,CountrySerializer, StateProvinceSerializer
+from .models import Adventure, Country
+from .serializers import AdventureSerializer,CountrySerializer
 
 class AdventureViewSet(viewsets.ModelViewSet):
     queryset = Adventure.objects.all()
@@ -11,6 +11,3 @@ class CountryViewSet(viewsets.ModelViewSet):
      queryset = Country.objects.all()
      serializer_class = CountrySerializer
 
-class StateProvinceViewSet(viewsets.ModelViewSet):
-     queryset = StateProvince.objects.all()
-     serializer_class = StateProvinceSerializer     

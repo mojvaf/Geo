@@ -17,15 +17,7 @@ class Country(models.Model):
     def __str__(self):
         return self.name
     
-class StateProvince(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE,related_name='states',blank=True, null=True)
 
-    class Meta: 
-        unique_together = ('name','country')
-
-    def __str__(self):
-        return self.name
     
 
 
