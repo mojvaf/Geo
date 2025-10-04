@@ -1,8 +1,6 @@
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
-
 from .models import Adventure, Country, Region,Habitat,Season,Bird
-
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
 from .models import Adventure, Country, Region, Habitat, Season, Bird
