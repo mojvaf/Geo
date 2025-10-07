@@ -36,13 +36,6 @@ class HabitatAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-# ---------------- Season ----------------
-@admin.register(Season)
-class SeasonAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('name',)
-    ordering = ('name',)
-
 
 # ---------------- Description ----------------
 @admin.register(Description)

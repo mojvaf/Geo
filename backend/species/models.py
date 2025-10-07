@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from multiselectfield import MultiSelectField
 
 
 class Adventure(models.Model):
@@ -11,25 +12,26 @@ class Adventure(models.Model):
     
 
 class Country(models.Model):
-    name = models.CharField(max_length=100, unique=True,blank=True,null=True)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
     
 
 class Description(models.Model):
-       name = models.TextField(max_length=6000,blank=True,null=True)
+       name = models.TextField(blank=True,null=True)
 
        def __str__(self):
         return self.name or "Unnamed Description"
 
 
 class Region(models.Model):
-    key = models.CharField(max_length=50, unique=True,blank=True,null=True)
+    name = models.CharField(max_length=50, unique=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL,blank=True,null=True)
+    boundary = models.PolygonField(null=True, blank=True)
 
     def __str__(self):
-           return str(self.country) if self.country else f"Region {self.key} or Unknown"
+           return f"{self.name} ({self.country})" if self.country else self.name
     
 
 class Habitat(models.Model):
@@ -38,15 +40,15 @@ class Habitat(models.Model):
      def __str__(self):
           return self.name or "Unknown Habitat"
      
-class Season(models.Model):
-      name = models.CharField(max_length=60, unique=True, null=True, blank=True )
-
-      def __str__(self):
-           return self.name or "Unknown Season"
+class Season(models.TextChoices):
+    SUMMER = "Summer", "Summer"
+    YEAR_AROUND = "Year_round" , "Year_round"
+    WINTER = "Winter","Winter"
+    
       
 class Bird(models.Model):
      name = models.CharField(max_length=255, blank=True, null=True)  
-     seasons = models.ManyToManyField(Season, related_name='birds', blank=True)
+     seasons = MultiSelectField(choices=Season.choices, blank=True, null=True)
      habitats = models.ManyToManyField(Habitat, related_name='birds', blank=True)
      regions = models.ManyToManyField(Region, related_name='birds', blank=True)
      description = models.OneToOneField(Description, on_delete=models.SET_NULL, blank=True, null=True)
