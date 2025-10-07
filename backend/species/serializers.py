@@ -33,7 +33,7 @@ class RegionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Region
-        fields = ['id', 'key', 'country']
+        fields = ['id', 'name', 'country']
 
 
 # ------------------------
@@ -46,19 +46,9 @@ class HabitatSerializer(serializers.ModelSerializer):
 
 
 # ------------------------
-# Season Serializer
-# ------------------------
-class SeasonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Season
-        fields = ['id', 'name']
-
-
-# ------------------------
 # Bird Read Serializer (Nested)
 # ------------------------
 class BirdSerializer(serializers.ModelSerializer):
-    seasons = SeasonSerializer(many=True, read_only=True)
     regions = RegionSerializer(many=True, read_only=True)
     habitats = HabitatSerializer(many=True, read_only=True)
 

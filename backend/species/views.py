@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from .models import Adventure, Country, Region, Habitat, Season, Bird
 from .serializers import AdventureSerializer,CountrySerializer, RegionSerializer,HabitatSerializer,SeasonSerializer,BirdSerializer,BirdWriteSerializer
 from rest_framework import filters
-##
+
 class AdventureViewSet(viewsets.ModelViewSet):
     queryset = Adventure.objects.all()
     serializer_class = AdventureSerializer
