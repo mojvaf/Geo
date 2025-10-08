@@ -27,7 +27,7 @@ class CountrySerializer(serializers.ModelSerializer):
 # ------------------------
 # Description Serializer
 # ------------------------
-class DescriptionSerializer(serializers.ModeSerializer):
+class DescriptionSerializer(serializers.ModelSerializer):
      class Meta:
          model = Description
          field = ['id', 'text']
@@ -35,12 +35,11 @@ class DescriptionSerializer(serializers.ModeSerializer):
 # ------------------------
 # Region Serializer
 # ------------------------
-class RegionSerializer(serializers.ModelSerializer):
-    country = CountrySerializer(read_only=True)
-
+class RegionSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Region
-        fields = ['id', 'name', 'country']
+        geo_field = 'Boundary'
+        fields = ['id', 'name', 'country','boundary']
 
 
 # ------------------------
@@ -58,6 +57,7 @@ class HabitatSerializer(serializers.ModelSerializer):
 class BirdSerializer(serializers.ModelSerializer):
     regions = RegionSerializer(many=True, read_only=True)
     habitats = HabitatSerializer(many=True, read_only=True)
+    seasons = serializers.ListField(child=serializers.CharField(), read_only=True)
 
     class Meta:
         model = Bird
@@ -76,8 +76,10 @@ class BirdSerializer(serializers.ModelSerializer):
 # Bird Write Serializer (Primary Key for Relationships)
 # ------------------------
 class BirdWriteSerializer(serializers.ModelSerializer):
-    seasons = serializers.PrimaryKeyRelatedField(
-        queryset=Season.objects.all(), many=True, required=False
+    # seasons is a MultiSelectField,
+    seasons = serializers.ListField(
+        child=serializers.ChoiceField(choices=Season.choices),
+        required=False,
     )
     habitats = serializers.PrimaryKeyRelatedField(
         queryset=Habitat.objects.all(), many=True, required=False

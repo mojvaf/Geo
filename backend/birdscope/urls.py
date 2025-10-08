@@ -1,7 +1,7 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from species.views import AdventureViewSet, CountryViewSet, RegionViewSet,BirdViewSet, SeasonViewSet, HabitatViewSet
+from species.views import AdventureViewSet, CountryViewSet, RegionViewSet,BirdViewSet,  HabitatViewSet
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -13,7 +13,6 @@ router.register(r'adventures', AdventureViewSet)
 router.register('countries', CountryViewSet)
 router.register('regions', RegionViewSet)
 router.register("birds", BirdViewSet)
-router.register("seasons", SeasonViewSet)
 router.register("habitats", HabitatViewSet)
 
 urlpatterns = [
