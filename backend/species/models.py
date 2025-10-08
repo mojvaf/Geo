@@ -19,10 +19,10 @@ class Country(models.Model):
     
 
 class Description(models.Model):
-       name = models.TextField(blank=True,null=True)
+       text = models.TextField(blank=True,null=True)
 
        def __str__(self):
-        return self.name or "Unnamed Description"
+        return self.text or "Unnamed Description"
 
 
 class Region(models.Model):

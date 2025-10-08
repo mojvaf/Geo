@@ -1,5 +1,5 @@
 from django.contrib import admin
-from species.models import Adventure, Country, Region, Habitat, Season, Bird, Description
+from species.models import Adventure, Country, Region, Habitat, Bird, Description
 from leaflet.admin import LeafletGeoAdmin
 from django.utils.html import format_html
 
@@ -25,8 +25,8 @@ class CountryAdmin(admin.ModelAdmin):
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('id', 'key', 'country')
     list_filter = ('country',)
-    search_fields = ('key', 'country__name')
-    ordering = ('country__name', 'key')
+    search_fields = ('country__name')
+    ordering = ('country__name')
 
 
 # ---------------- Habitat ----------------
@@ -69,10 +69,6 @@ class BirdAdmin(admin.ModelAdmin):
             )
         return "No Image"
     display_image.short_description = "Image"
-
-    def display_seasons(self, obj):
-        return ", ".join([s.name for s in obj.seasons.all()])
-    display_seasons.short_description = "Seasons"
 
     def display_habitats(self, obj):
         return ", ".join([h.name for h in obj.habitats.all()])

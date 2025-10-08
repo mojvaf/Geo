@@ -1,6 +1,6 @@
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
-from .models import Adventure, Country, Region,Habitat,Season,Bird
+from .models import Adventure, Country, Region,Habitat,Season,Bird,Description
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
 from .models import Adventure, Country, Region, Habitat, Season, Bird
@@ -24,6 +24,13 @@ class CountrySerializer(serializers.ModelSerializer):
         model = Country
         fields = ['id', 'name']
 
+# ------------------------
+# Description Serializer
+# ------------------------
+class DescriptionSerializer(serializers.ModeSerializer):
+     class Meta:
+         model = Description
+         field = ['id', 'text']
 
 # ------------------------
 # Region Serializer
