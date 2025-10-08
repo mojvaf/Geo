@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Adventure, Country, Region, Habitat, Season, Bird
-from .serializers import AdventureSerializer,CountrySerializer, RegionSerializer,HabitatSerializer,SeasonSerializer,BirdSerializer,BirdWriteSerializer
+from .models import Adventure, Country, Region, Habitat, Bird
+from .serializers import AdventureSerializer,CountrySerializer, RegionSerializer,HabitatSerializer,BirdSerializer,BirdWriteSerializer
 from rest_framework import filters
 
 class AdventureViewSet(viewsets.ModelViewSet):
@@ -22,9 +22,7 @@ class HabitatViewSet(viewsets.ModelViewSet):
      queryset = Habitat.objects.all()
      serializer_class  = HabitatSerializer
 
-class SeasonViewSet(viewsets.ModelViewSet):
-     queryset = Season.objects.all()
-     serializer_class  = SeasonSerializer
+
 
 class BirdViewSet(viewsets.ModelViewSet):
       queryset = Bird.objects.all().prefetch_related("seasons", "habitats", "regions")
