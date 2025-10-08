@@ -14,7 +14,7 @@ class CountryViewSet(viewsets.ModelViewSet):
 
 
 class RegionViewSet(viewsets.ModelViewSet):
-     queryset = Region.objects.all().select_related('country').order_by('key')
+     queryset = Region.objects.all().select_related('country').order_by('name')
      serializer_class = RegionSerializer
 
 
@@ -32,6 +32,7 @@ class BirdViewSet(viewsets.ModelViewSet):
       search_fields = ['name', 'description']
       
       def get_serializer_class(self):
+        # Use the "write" serializer for create/update, and the "read" serializer otherwise
         if self.action in ["create", "update", "partial_update"]:
             return BirdWriteSerializer
         return BirdSerializer
