@@ -3,8 +3,8 @@ from multiselectfield import MultiSelectField
 
 
 class Adventure(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.PointField(srid=4326)
+    name = models.CharField(max_length=255,db_index=True)
+    location = models.PointField(srid=4326,spatial_index=True)
     description = models.CharField(max_length=1000)
 
     def __str__(self):
@@ -18,13 +18,6 @@ class Country(models.Model):
         return self.name
     
 
-class Description(models.Model):
-       text = models.TextField(blank=True,null=True)
-
-       def __str__(self):
-        return self.text or "Unnamed Description"
-
-
 class Region(models.Model):
     name = models.CharField(max_length=50, unique=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL,blank=True,null=True)
@@ -35,7 +28,7 @@ class Region(models.Model):
     
 
 class Habitat(models.Model):
-     name = models.CharField(max_length=70, unique=True, blank=True,null=True)
+     name = models.CharField(max_length=70, unique=True, blank=True, null=True)
 
      def __str__(self):
           return self.name or "Unknown Habitat"
@@ -51,7 +44,7 @@ class Bird(models.Model):
      seasons = MultiSelectField(choices=Season.choices, blank=True, null=True)
      habitats = models.ManyToManyField(Habitat, related_name='birds', blank=True)
      regions = models.ManyToManyField(Region, related_name='birds', blank=True)
-     description = models.OneToOneField(Description, on_delete=models.SET_NULL, blank=True, null=True)
+     description = models.CharField(max_length=70,unique=True,blank=True, null=True)
      image = models.ImageField(upload_to="birds/", blank=True, null=True)
 
 
