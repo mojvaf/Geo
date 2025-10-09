@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from leaflet.admin import LeafletGeoAdmin
-from species.models import Adventure, Country, Region, Habitat, Bird, Description
+from species.models import Adventure, Country, Region, Habitat, Bird
 
 
 # ---------------- Adventure ----------------
@@ -35,21 +35,6 @@ class HabitatAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ['name']
     ordering = ['name']
-
-
-# ---------------- Description ----------------
-@admin.register(Description)
-class DescriptionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'display_name')
-    search_fields = ['name']
-    ordering = ['id']
-
-    def display_name(self, obj):
-        if obj.name:
-            return obj.name[:50]  # truncate long text
-        return "Unnamed Description"
-    display_name.short_description = "Name"
-
 
 # ---------------- Bird ----------------
 @admin.register(Bird)
