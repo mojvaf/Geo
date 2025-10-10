@@ -1,23 +1,31 @@
 asgiref==3.9.1
 Django==5.2.6
+
+# Django extensions
 django-filter==25.1
 django-leaflet==0.32.0
 django-multiselectfield==1.0.1
+
+# API
 djangorestframework==3.16.1
 djangorestframework-gis==1.2.0
 djangorestframework_simplejwt==5.5.1
-et_xmlfile==2.0.0
+
+# Database + GIS
+psycopg2-binary==2.9.10
 GDAL==3.11.3
+sqlparse==0.5.3
+pytz==2025.2
+tzdata==2025.2
+
+# Utilities
+python-decouple==3.8
 Markdown==3.9
-numpy==2.3.3
+pillow==11.3.0
 openpyxl==3.1.5
 pandas==2.3.2
-pillow==11.3.0
-psycopg2-binary==2.9.10
-PyJWT==2.10.1
+numpy==2.3.3
 python-dateutil==2.9.0.post0
-python-decouple==3.8
-pytz==2025.2
 six==1.17.0
-sqlparse==0.5.3
-tzdata==2025.2
+et_xmlfile==2.0.0
+PyJWT==2.10.1
