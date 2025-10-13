@@ -25,6 +25,6 @@ git clone https://github.com/your-username/birds-habitats.git
 cd birds-habitats
 ```
 
-Run the backend : first do source env_linux/bin/activate in the main folder and then go to backend and run python manage.py runserver
+Run the backend : first activate the project by going to the main folder and run source env_linux/bin/activate and then go to the backend and run python manage.py runserver
 
 Run the frontend : go to the frontend folder and npm run dev
