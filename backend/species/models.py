@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-from multiselectfield import MultiSelectField
+
 
 
 class Adventure(models.Model):
@@ -33,15 +33,28 @@ class Habitat(models.Model):
      def __str__(self):
           return self.name or "Unknown Habitat"
      
-class Season(models.TextChoices):
-    SUMMER = "Summer", "Summer"
-    YEAR_AROUND = "Year_round" , "Year_round"
-    WINTER = "Winter","Winter"
-    
+class Season(models.Model):
+   SUMMER = "Summer"
+   WINTER = "Winter"
+   YEAR_AROUND = "Year Around"
+
+   SEASON_CHOICES = [
+       (SUMMER, "Summer"),
+       (WINTER, "Winter"),
+       (YEAR_AROUND, "Year Around"),
+   ]
+
+   name = models.CharField(max_length= 50, choices=SEASON_CHOICES,unique=True)
+
+   class Meta:
+       ordering = ["name"]
+
+   def __str__(self):
+      return self.name   
       
 class Bird(models.Model):
      name = models.CharField(max_length=255, blank=True, null=True)  
-     seasons = MultiSelectField(choices=Season.choices, blank=True, null=True)
+     seasons = models.ManyToManyField(Season, related_name="birds", blank=True)
      habitats = models.ManyToManyField(Habitat, related_name='birds', blank=True)
      regions = models.ManyToManyField(Region, related_name='birds', blank=True)
      description = models.CharField(max_length=70,unique=True,blank=True, null=True)
