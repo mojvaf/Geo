@@ -12,7 +12,7 @@ from .models import Adventure, Country, Region, Habitat, Season, Bird
 class AdventureSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Adventure
-        geo_field = "location"
+        geo_field = "position"
         fields = '__all__'
 
 
@@ -71,6 +71,7 @@ class BirdSerializer(serializers.ModelSerializer):
 # ------------------------
 class BirdWriteSerializer(serializers.ModelSerializer):
     # seasons is a MultiSelectField,
+    # human-readable field
     seasons = serializers.SlugRelatedField(
     slug_field="name",
     queryset=Season.objects.all(),

@@ -1,14 +1,18 @@
 from django.contrib.gis.db import models
+from datetime import date
+from django.contrib.gis.geos import Point
 
 
 
 class Adventure(models.Model):
-    name = models.CharField(max_length=255,db_index=True)
-    location = models.PointField(srid=4326,spatial_index=True)
-    description = models.CharField(max_length=1000)
+    cityName = models.CharField(max_length=255,db_index=True)
+    country = models.CharField(max_length=50, default="Unknown")
+    date = models.DateField(default=date.today)
+    position = models.PointField(srid=4326,spatial_index=True, default=Point(0, 0))
+    notes = models.CharField(max_length=1000, blank=True,null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.cityName}, {self.country}"
     
 
 class Country(models.Model):
