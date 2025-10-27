@@ -7,9 +7,9 @@ from species.models import Adventure, Country, Region, Habitat, Bird
 # ---------------- Adventure ----------------
 @admin.register(Adventure)
 class AdventureAdmin(LeafletGeoAdmin):
-    list_display = ('name', 'location', 'description')
-    search_fields = ['name', 'description']
-    ordering = ['name']
+    list_display = ('cityName', 'position', 'notes')
+    search_fields = ['cityName', 'notes']
+    ordering = ['cityName']
 
 
 # ---------------- Country ----------------
