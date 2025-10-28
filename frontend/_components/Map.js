@@ -1,6 +1,7 @@
 "use client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useEffect, useState } from "react";
 
 import L from "leaflet";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
@@ -16,6 +17,16 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function Map() {
+  const [adventures, setAdventures] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/adventures/")
+      .then((res) => res.json())
+      .then((data) => setAdventures(data));
+  }, []);
+
+  console.log(adventures);
+
   return (
     <MapContainer
       center={[51.505, -0.09]}
