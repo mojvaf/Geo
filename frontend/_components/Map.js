@@ -2,22 +2,11 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
-
 import L from "leaflet";
-import iconUrl from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
-
-const DefaultIcon = L.icon({
-  iconUrl,
-  shadowUrl: iconShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
+import adventureIconUrl from "../public/icons/adventure.png"; 
 
 function Map() {
-  const [adventures, setAdventures] = useState([]);
+  const [adventures, setAdventures] = useState({ features: [] });
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/adventures/")
@@ -25,12 +14,24 @@ function Map() {
       .then((data) => setAdventures(data));
   }, []);
 
-  console.log(adventures);
+  const center = adventures.features.length
+    ? [
+        adventures.features[0].geometry.coordinates[1],
+        adventures.features[0].geometry.coordinates[0],
+      ]
+    : [51.505, -0.09];
+
+  const AdventureIcon = L.icon({
+    iconUrl: adventureIconUrl.src,
+    iconSize: [35, 45],
+    iconAnchor: [17, 45],
+    popupAnchor: [0, -45],
+  });
 
   return (
     <MapContainer
-      center={[51.505, -0.09]}
-      zoom={13}
+      center={center}
+      zoom={5}
       scrollWheelZoom={false}
       className="flex-1 w-full h-full"
     >
@@ -38,11 +39,23 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+
+      {adventures.features.map((feature) => (
+        <Marker
+          key={feature.id}
+          position={[
+            feature.geometry.coordinates[1],
+            feature.geometry.coordinates[0],
+          ]}
+          icon={AdventureIcon}
+        >
+          <Popup>
+            <strong>{feature.properties.cityName}</strong> <br />
+            {feature.properties.country} <br />
+            {feature.properties.date}
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }
