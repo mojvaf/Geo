@@ -35,6 +35,17 @@ module.exports = {
           950: "#382814",
         },
       },
+      keyframes: {
+        rotate: {
+          to: { transform: "rotate(1turn)" },
+        },
+      },
+      animation: {
+        rotate: "rotate 1.5s linear infinite",
+      },
+      backgroundImage: {
+        spinner: "conic-gradient(transparent 10%,  primary.50",
+      },
     },
   },
   plugins: [],
