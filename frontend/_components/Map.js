@@ -1,28 +1,30 @@
 "use client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import L from "leaflet";
-import adventureIconUrl from "../public/icons/adventure.png"; 
+import { fetchAdventures } from "../store/adventuresSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Map() {
-  const [adventures, setAdventures] = useState({ features: [] });
+  const dispatch = useDispatch();
+  const adventures = useSelector((state) => state.adventures.features);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/adventures/")
-      .then((res) => res.json())
-      .then((data) => setAdventures(data));
-  }, []);
+    dispatch(fetchAdventures());
+  }, [dispatch]);
 
-  const center = adventures.features.length
+  console.log(adventures);
+
+  const center = adventures.length
     ? [
-        adventures.features[0].geometry.coordinates[1],
-        adventures.features[0].geometry.coordinates[0],
+        adventures[0].geometry.coordinates[1],
+        adventures[0].geometry.coordinates[0],
       ]
     : [51.505, -0.09];
 
   const AdventureIcon = L.icon({
-    iconUrl: adventureIconUrl.src,
+    iconUrl: "/icons/adventure.png",
     iconSize: [35, 45],
     iconAnchor: [17, 45],
     popupAnchor: [0, -45],
@@ -40,7 +42,7 @@ function Map() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       />
 
-      {adventures.features.map((feature) => (
+      {adventures.map((feature) => (
         <Marker
           key={feature.id}
           position={[
