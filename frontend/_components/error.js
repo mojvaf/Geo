@@ -1,3 +1,4 @@
+"use client";
 export default function Error({ error, reset }) {
   return (
     <main className="flex justify-center items-center flex-col gap-6">
