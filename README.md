@@ -8,12 +8,12 @@ This project is about exploring **birds**, the **places they live**, and the **s
 - 🌍 Record habitats and locations where birds are found.
 - 🍂 Track seasonal patterns (spring, summer, autumn, winter).
 - 🔍 Search and filter birds by location, season, or species.
-- 📊 Visualize data (maps, tables, or charts).
+- 📊 Visualize data
 
 ## Tech Stack
 
-- **Backend:** Django (Python)
-- **Frontend:** React
+- **Backend:** Django (Python), numpy, Pandas
+- **Frontend:** React, Next.js and Tailwind
 - **Database:** PostgreSQL
 
 ## Installation
@@ -22,7 +22,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/birds-habitats.git
-cd birds-habitats
+
 ```
 
 Run the backend : first activate the project by going to the main folder and run source env_linux/bin/activate and then go to the backend and run python manage.py runserver
