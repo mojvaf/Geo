@@ -14,8 +14,6 @@ function Map() {
     dispatch(fetchAdventures());
   }, [dispatch]);
 
-  console.log(adventures);
-
   const center = adventures.length
     ? [
         adventures[0].geometry.coordinates[1],
