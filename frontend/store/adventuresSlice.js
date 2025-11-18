@@ -1,13 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchAdventures = createAsyncThunk(
-  "adventures/fetchAll",
-  async () => {
-    const res = await fetch("http://127.0.0.1:8000/api/adventures/");
-    const data = await res.json();
-    return data;
-  }
-);
+const BASE_URL = "http://127.0.0.1:8000/api/adventures/";
+
+export const fetchCities = createAsyncThunk("adventures/fetchAll", async () => {
+  const res = await fetch(`${BASE_URL}`);
+  const data = await res.json();
+  return data;
+});
+
+export const fetchCity = createAsyncThunk("cities/fetchOne", async (id) => {
+  const res = await fetch(`${BASE_URL}/cities/${id}`);
+  return await res.json();
+});
 
 const adventuresSlice = createSlice({
   name: "adventures",

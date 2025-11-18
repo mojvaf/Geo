@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 import L from "leaflet";
-import { fetchAdventures } from "../store/adventuresSlice";
+import { fetchCities } from "../store/adventuresSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Map() {
@@ -11,7 +11,7 @@ function Map() {
   const adventures = useSelector((state) => state.adventures.features);
 
   useEffect(() => {
-    dispatch(fetchAdventures());
+    dispatch(fetchCities());
   }, [dispatch]);
 
   const center = adventures.length
