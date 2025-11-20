@@ -1,12 +1,8 @@
-import Logo from "@/_components/Logo";
-import BirdCard from "@/_components/BirdCard";
-
 export const metadata = {
   title: "Birds",
 };
 
 export default function Birds() {
-  const birds = [];
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">Our Birds</h1>
@@ -20,13 +16,6 @@ export default function Birds() {
         every melody a gentle reminder of nature’s harmony. Welcome to the
         sanctuary of birds.
       </p>
-      {birds.length > 0 && (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {birds.map((bird) => (
-            <BirdCard bird={bird} key={bird.id} />
-          ))}
-        </div>
-      )}
     </div>
   );
 }

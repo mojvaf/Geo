@@ -19,14 +19,14 @@ const adventuresSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAdventures.pending, (state) => {
+      .addCase(fetchCities.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAdventures.fulfilled, (state, action) => {
+      .addCase(fetchCities.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.features = action.payload.features;
       })
-      .addCase(fetchAdventures.rejected, (state, action) => {
+      .addCase(fetchCities.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
