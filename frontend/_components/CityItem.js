@@ -1,8 +1,8 @@
-function CityItem() {
+function CityItem({ feature }) {
   return (
-    <div className="text-6xl text-primary-50 mb-20 tracking-tight font-normal">
-      This City Item
-    </div>
+    <li className="text-6xl text-primary-50 mb-20 tracking-tight font-normal">
+      <strong>{feature.properties.cityName}</strong>
+    </li>
   );
 }
 
