@@ -1,5 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-
 function CityItem() {
   return (
     <div className="text-6xl text-primary-50 mb-20 tracking-tight font-normal">

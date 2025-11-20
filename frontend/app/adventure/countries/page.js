@@ -1,9 +1,10 @@
-import CountryList from "@/_components/CountryList";
+import CountriesList from "@/_components/CountriesList";
+
 
 export default function page() {
   return (
     <div>
-      <CountryList />
+      <CountriesList />
     </div>
   );
 }
