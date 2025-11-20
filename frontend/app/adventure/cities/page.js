@@ -1,9 +1,9 @@
-import CityList from "@/_components/CityList";
+import CitiesList from "@/_components/CitiesList";
 
 export default function page() {
   return (
     <div>
-      <CityList />
+      <CitiesList />
     </div>
   );
 }
