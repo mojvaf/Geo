@@ -1,14 +1,18 @@
 "use client";
+
 import CityItem from "./CityItem";
+import { useSelector } from "react-redux";
 
 function CitiesList() {
+  const adventures = useSelector((state) => state.adventures.features);
   return (
-    <div>
-      <div className="text-2xl text-primary-50 mb-30 tracking-tight font-normal">
-        The Cities you find Birds!
-      </div>
-      <CityItem />
-    </div>
+    <ul>
+      <li>
+        {adventures.map((feature) => (
+          <CityItem feature={feature} />
+        ))}
+      </li>
+    </ul>
   );
 }
 
