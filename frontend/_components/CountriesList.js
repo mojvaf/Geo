@@ -8,11 +8,9 @@ function CountriesList() {
 
   return (
     <ul>
-      <li className="text-6xl text-primary-50 mb-20 tracking-tight font-normal">
-        {adventures.map((feature) => (
-          <CountryItem feature={feature} />
-        ))}
-      </li>
+      {adventures.map((feature) => (
+        <CountryItem key={feature.id} feature={feature} />
+      ))}
     </ul>
   );
 }
