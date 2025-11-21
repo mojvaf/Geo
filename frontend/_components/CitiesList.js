@@ -7,11 +7,9 @@ function CitiesList() {
   const adventures = useSelector((state) => state.adventures.features);
   return (
     <ul>
-      <li>
-        {adventures.map((feature) => (
-          <CityItem feature={feature} />
-        ))}
-      </li>
+      {adventures.map((feature) => (
+        <CityItem key={feature.id} feature={feature} />
+      ))}
     </ul>
   );
 }
