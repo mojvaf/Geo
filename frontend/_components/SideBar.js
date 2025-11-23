@@ -6,7 +6,7 @@ export default function SideBar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col items-center gap-4 w-full">
+    <aside className="flex flex-col items-center gap-4 w-full flex-none">
       <h2 className="text-white text-xl mb-4">Adventure Menu</h2>
       <nav className="mt-12 mb-8">
         <ul className="list-none flex rounded-lg bg-primary-600 gap-4 p-1">
