@@ -1,5 +1,6 @@
 "use client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useSearchParams } from "next/navigation";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 import L from "leaflet";
@@ -9,6 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 function Map() {
   const dispatch = useDispatch();
   const adventures = useSelector((state) => state.adventures.features);
+  // const searchParams = useSearchParams()
+  // const lat = searchParams.get('lat')
+  // const lng = searchParams.get('lng')
 
   useEffect(() => {
     dispatch(fetchCities());

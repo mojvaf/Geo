@@ -12,8 +12,13 @@ const formatDate = (date) =>
 function CityItem({ feature }) {
   const dispatch = useDispatch();
 
-  const { id, properties } = feature;
-  const { cityName, date } = properties;
+  const {
+    id,
+    properties: { cityName, date },
+    geometry: {
+      coordinates: [lng, lat],
+    },
+  } = feature;
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -22,7 +27,7 @@ function CityItem({ feature }) {
 
   return (
     <li className="flex items-center gap-[1.6rem] bg-primary-800 overflow-y-auto">
-      <Link href={`${id}`}>
+      <Link href={`${id}?lat=${lat}&lng=${lng}`}>
         <h3>{cityName}</h3>
         <time>{formatDate(date)}</time>
       </Link>
