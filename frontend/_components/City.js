@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import BackButton from "./BackButton";
 
 function City({ city }) {
   const { cityName, date, notes } = city.properties;
@@ -26,7 +27,7 @@ function City({ city }) {
       <p>Notes: {notes}</p>
       <div>Lat: {lat}</div>
       <div>Lng: {lng}</div>
-      <button onClick={handleClick}>change</button>
+      <BackButton />
     </div>
   );
 }

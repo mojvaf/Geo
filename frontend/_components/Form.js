@@ -1,6 +1,7 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 "use client";
 import { useRouter } from "next/navigation";
+import BackButton from "./BackButton";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -57,15 +58,7 @@ function Form() {
 
       <div className="flex justify-between">
         <button className="p-2 bg-primary-1000 rounded">Add</button>
-        <button
-          className="p-2 bg-primary-400 rounded"
-          onClick={(e) => {
-            e.preventDefault();
-            router.back();
-          }}
-        >
-          &larr; Back
-        </button>
+        <BackButton />
       </div>
     </form>
   );
