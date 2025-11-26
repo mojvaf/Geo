@@ -28,3 +28,13 @@ git clone https://github.com/your-username/birds-habitats.git
 Run the backend : first activate the project by going to the main folder and run source env_linux/bin/activate and then go to the backend and run python manage.py runserver
 
 Run the frontend : go to the frontend folder and npm run dev
+
+## Run the app
+
+In the main folder run: source env_linux/bin/activate
+In the backend folder run: python manage.py runserver
+In the frontend folder: run npm run dev
+
+## End the run
+
+In the main folder run: deactivate
