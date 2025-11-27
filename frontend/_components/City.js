@@ -11,15 +11,6 @@ function City({ city }) {
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
 
-  const handleClick = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("lat", "43.123");
-    params.set("lng", "-79.456");
-
-    // Push updated params to URL
-    router.push(`?${params.toString()}`);
-  };
-
   return (
     <div>
       <h1>{cityName}</h1>
