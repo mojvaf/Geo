@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteCity } from "@/store/adventuresSlice";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -11,6 +12,7 @@ const formatDate = (date) =>
 
 function CityItem({ feature }) {
   const dispatch = useDispatch();
+  const currentCity = useSelector((state) => state.adventures.current);
 
   const {
     id,
@@ -27,7 +29,17 @@ function CityItem({ feature }) {
 
   return (
     <li className="flex items-center gap-[1.6rem] bg-primary-800 overflow-y-auto">
-      <Link href={`${id}?lat=${lat}&lng=${lng}`}>
+      <Link
+        className={`
+    ${
+      id === currentCity?.id
+        ? "border-2 border-primary-1000 border-l-[5px] border-l-primary-1000"
+        : ""
+    }
+    bg-primary-800 p-4 rounded-xl
+  `}
+        href={`${id}?lat=${lat}&lng=${lng}`}
+      >
         <h3>{cityName}</h3>
         <time>{formatDate(date)}</time>
       </Link>
