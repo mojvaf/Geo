@@ -8,7 +8,7 @@ export default function AdventureLayout({ children }) {
         <SideBar />
         {children}
       </div>
-      <div className="w-full md:flex-1 h-[60vh] md:h-full relative">
+      <div className="flex flex-1 h-full">
         <Map />
       </div>
     </div>
