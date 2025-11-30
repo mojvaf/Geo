@@ -21,11 +21,10 @@ const customIcon = new L.Icon({
 
 function Map() {
   const [mapPosition, setMapPosition] = useState([43.656745, -79.488281]);
-
   const searchParams = useSearchParams();
   const lat = parseFloat(searchParams.get("lat"));
   const lng = parseFloat(searchParams.get("lng"));
-
+  console.log(searchParams);
   const router = useRouter();
   const dispatch = useDispatch();
   const adventures = useSelector((state) => state.adventures.features);
@@ -73,7 +72,7 @@ function Map() {
   );
 }
 
-// CENTER MAP PROGRAMMATICALLY
+// MOVE THE POINT ON THE MAP
 function ChangeCenter({ position }) {
   const map = useMap();
   map.setView(position);
