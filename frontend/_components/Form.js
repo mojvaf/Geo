@@ -1,58 +1,90 @@
-// "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import BackButton from "./BackButton";
-
-export function convertToEmoji(countryCode) {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split("")
-    .map((char) => 127397 + char.charCodeAt());
-  return String.fromCodePoint(...codePoints);
-}
+import { Suspense, useEffect, useState } from "react";
+import Message from "./Message";
+import Spinner from "./Spinner";
 
 function Form() {
-  const router = useRouter();
+  const [cityName, setCityName] = useState("");
+  const [country, setCountry] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [notes, setNotes] = useState("");
+  const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
+  const [geocodingError, setGeocodingError] = useState("");
+
+  const searchParams = useSearchParams();
+  const lat = parseFloat(searchParams.get("lat"));
+  const lng = parseFloat(searchParams.get("lng"));
+  const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+
+  useEffect(() => {
+    if (!lat && !lng) return;
+
+    async function fetchData() {
+      try {
+        setIsLoadingGeocoding(true);
+        setGeocodingError("");
+        const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
+        const data = await res.json();
+        if (!data.countryCode)
+          throw new Error(
+            "That doesn't seem to be a city. Click somewhere else!"
+          );
+        setCityName(data.city || data.locality || "");
+        setCountry(data.country || data.countryCode || "");
+      } catch (err) {
+        setGeocodingError(err.message);
+      } finally {
+        setIsLoadingGeocoding(false);
+      }
+    }
+    if (lat != null && lng != null) fetchData();
+  }, [lat, lng]);
+
+  if (isLoadingGeocoding) return <Spinner />;
+  if (!lat && !lng)
+    return <Message message="Please select a point on the map." />;
+  if (geocodingError) return <Message message={geocodingError} />;
+
   return (
     <form className={`bg-primary-900 round-md p-3 flex flex-col gap-6`}>
       <div className="flex flex-col w-[350px] relative">
         <label>Country name</label>
         <input
-          className="rounded-md bg-primary-200"
-          //id="cityName"
-          //onChange={(e) => setCityName(e.target.value)}
-          //value={cityName}
+          className="rounded-md bg-primary-500 pl-3"
+          id="country"
+          onChange={(e) => setCountry(e.target.value)}
+          value={country}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
       </div>
       <div className="flex flex-col w-[350px] rounded-md relative">
         <label>City name</label>
         <input
-          className="rounded-md bg-primary-200"
-          //id="cityName"
-          //onChange={(e) => setCityName(e.target.value)}
-          //value={cityName}
+          className="rounded-md bg-primary-500 pl-3"
+          id="cityName"
+          onChange={(e) => setCityName(e.target.value)}
+          value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
       </div>
 
       <div className="flex flex-col w-[350px] rounded-md relative">
         <label htmlFor="date">When did you go to ?</label>
         <input
-          className="rounded-md bg-primary-200"
-          //id="date"
-          //onChange={(e) => setDate(e.target.value)}
-          //value={date}
+          className="rounded-md bg-primary-500 pl-3"
+          id="date"
+          onChange={(e) => setDate(e.target.value)}
+          value={date}
         />
       </div>
 
       <div className="flex flex-col w-[400px] rounded-md relative">
         <label htmlFor="notes">Notes about your Bird seeing </label>
         <textarea
-          className="rounded-md bg-primary-200"
-          //id="notes"
-          // onChange={(e) => setNotes(e.target.value)}
-          // value={notes}
+          className="rounded-md bg-primary-500"
+          id="notes"
+          onChange={(e) => setNotes(e.target.value)}
+          value={notes}
         />
       </div>
 
