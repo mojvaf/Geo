@@ -1,9 +1,13 @@
 "use client";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 import { useRouter, useSearchParams } from "next/navigation";
-import BackButton from "./BackButton";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { createCity } from "./../store/adventuresSlice";
 import Message from "./Message";
 import Spinner from "./Spinner";
+import BackButton from "./BackButton";
 
 function Form() {
   const [cityName, setCityName] = useState("");
@@ -12,7 +16,8 @@ function Form() {
   const [notes, setNotes] = useState("");
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [geocodingError, setGeocodingError] = useState("");
-
+  const router = useRouter();
+  const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const lat = parseFloat(searchParams.get("lat"));
   const lng = parseFloat(searchParams.get("lng"));
@@ -42,13 +47,36 @@ function Form() {
     if (lat != null && lng != null) fetchData();
   }, [lat, lng]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!cityName || !date) return;
+    const newCity = {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [lng, lat],
+      },
+      properties: {
+        cityName,
+        country,
+        date: date.toISOString().split("T")[0],
+        notes,
+      },
+    };
+    dispatch(createCity(newCity));
+    router.push("/adventure/cities");
+  }
+
   if (isLoadingGeocoding) return <Spinner />;
   if (!lat && !lng)
     return <Message message="Please select a point on the map." />;
   if (geocodingError) return <Message message={geocodingError} />;
 
   return (
-    <form className={`bg-primary-900 round-md p-3 flex flex-col gap-6`}>
+    <form
+      className={`bg-primary-900 round-md p-3 flex flex-col gap-6`}
+      onSubmit={handleSubmit}
+    >
       <div className="flex flex-col w-[350px] relative">
         <label>Country name</label>
         <input
@@ -70,11 +98,13 @@ function Form() {
 
       <div className="flex flex-col w-[350px] rounded-md relative">
         <label htmlFor="date">When did you go to ?</label>
-        <input
+
+        <DatePicker
           className="rounded-md bg-primary-500 pl-3"
           id="date"
-          onChange={(e) => setDate(e.target.value)}
-          value={date}
+          onChange={(date) => setDate(date)}
+          selected={date}
+          dateFormat="yyyy-MM-dd"
         />
       </div>
 

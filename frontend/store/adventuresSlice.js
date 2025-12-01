@@ -26,13 +26,21 @@ export const fetchCity = createAsyncThunk("adventures/fetchOne", async (id) => {
 
 export const createCity = createAsyncThunk(
   "adventures/create",
-  async (newFeature) => {
-    const res = await fetch(BASE_URL, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(newFeature),
-    });
-    return await res.json();
+  async (newCity, { rejectWithValue }) => {
+    try {
+      const res = await fetch(BASE_URL, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(newCity),
+      });
+      if (!res.ok) {
+        const errText = await res.text();
+        return rejectWithValue(errText || "Failed to create adventure");
+      }
+      return await res.json();
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
 );
 
@@ -42,13 +50,22 @@ export const createCity = createAsyncThunk(
 
 export const updateCity = createAsyncThunk(
   "adventures/update",
-  async ({ id, updates }) => {
-    const res = await fetch(`${BASE_URL}${id}/`, {
-      method: "PATCH",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(updates),
-    });
-    return await res.json();
+  async ({ id, updates }, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${BASE_URL}${id}/`, {
+        method: "PATCH",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(updates),
+      });
+      if (!res.ok) {
+        const errorData = await res.json();
+        return rejectWithValue(errorData);
+      }
+      return await res.json();
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
 );
 
