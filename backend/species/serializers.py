@@ -51,7 +51,7 @@ class HabitatSerializer(serializers.ModelSerializer):
 class BirdSerializer(serializers.ModelSerializer):
     regions = RegionSerializer(many=True, read_only=True)
     habitats = HabitatSerializer(many=True, read_only=True)
-    seasons = serializers.PrimaryKeyRelatedField(queryset = Season.objects.all(), many = True, required = False)
+    seasons = serializers.SlugRelatedField(many=True, read_only=True, slug_field="name" )
 
     class Meta:
         model = Bird
