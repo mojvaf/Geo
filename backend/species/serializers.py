@@ -32,7 +32,7 @@ class CountrySerializer(serializers.ModelSerializer):
 class RegionSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Region
-        geo_field = 'Boundary'
+        geo_field = 'boundary'
         fields = ['id', 'name', 'country','boundary']
 
 
