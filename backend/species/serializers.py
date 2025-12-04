@@ -33,7 +33,7 @@ class RegionSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Region
         geo_field = 'boundary'
-        fields = ['id', 'name', 'country','boundary']
+        fields = ( 'id', 'name', 'country')
 
 
 # ------------------------
@@ -70,14 +70,12 @@ class BirdSerializer(serializers.ModelSerializer):
 # Bird Write Serializer (Primary Key for Relationships)
 # ------------------------
 class BirdWriteSerializer(serializers.ModelSerializer):
-    # seasons is a MultiSelectField,
-    # human-readable field
     seasons = serializers.SlugRelatedField(
-    slug_field="name",
-    queryset=Season.objects.all(),
-    many=True,
-    required=False
-)
+        slug_field="name",
+        queryset=Season.objects.all(),
+        many=True,
+        required=False
+    )
     habitats = serializers.PrimaryKeyRelatedField(
         queryset=Habitat.objects.all(), many=True, required=False
     )
