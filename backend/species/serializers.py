@@ -50,7 +50,6 @@ class HabitatSerializer(serializers.ModelSerializer):
 # ------------------------
 class BirdSerializer(serializers.ModelSerializer):
     regions = RegionSerializer(many=True, read_only=True)
-    habitats = HabitatSerializer(many=True, read_only=True)
     seasons = serializers.SlugRelatedField(many=True, read_only=True, slug_field="name" )
 
     class Meta:
@@ -76,9 +75,9 @@ class BirdWriteSerializer(serializers.ModelSerializer):
         many=True,
         required=False
     )
-    habitats = serializers.PrimaryKeyRelatedField(
-        queryset=Habitat.objects.all(), many=True, required=False
-    )
+     
+    habitats = serializers.CharField(required=False, allow_blank=True)
+    
     regions = serializers.PrimaryKeyRelatedField(
         queryset=Region.objects.all(), many=True, required=False
     )

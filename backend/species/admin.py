@@ -59,7 +59,7 @@ class BirdAdmin(admin.ModelAdmin):
         "display_habitats",
         "display_regions",
         "display_countries",
-        "display_image",   # small thumbnail
+        "display_image",   
     )
 
     formfield_overrides = {
