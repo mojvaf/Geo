@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.utils.html import format_html
 from leaflet.admin import LeafletGeoAdmin
 from species.models import Adventure, Country, Region, Habitat,Season, Bird
-
+from django import forms
+from django.contrib.gis.db import models
 
 # ---------------- Adventure ----------------
 @admin.register(Adventure)
@@ -61,7 +62,11 @@ class BirdAdmin(admin.ModelAdmin):
         "display_image",   # small thumbnail
     )
 
-    filter_horizontal = ("seasons",  "regions")
+    formfield_overrides = {
+        models.ManyToManyField: {
+            'widget': forms.SelectMultiple(attrs={'size': 8})
+        },
+    }
 
     readonly_fields = ("image_preview",)
 
