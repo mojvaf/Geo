@@ -100,7 +100,7 @@ class BirdAdmin(admin.ModelAdmin):
         return ", ".join(s.name for s in obj.seasons.all())
 
     def display_habitats(self, obj):
-        return ", ".join(h.name for h in obj.habitats.all())
+        return obj.habitats or "None"
 
     def display_regions(self, obj):
         return ", ".join(r.name for r in obj.regions.all())
