@@ -61,7 +61,7 @@ class Bird(models.Model):
      seasons = models.ManyToManyField(Season, related_name="birds", blank=True)
      habitats = models.CharField(max_length=255, blank=True, null=True)
      regions = models.ManyToManyField(Region, related_name='birds', blank=True)
-     description = models.CharField(max_length=70,unique=True,blank=True, null=True)
+     description = models.TextField(blank=True, null=True)
      image = models.ImageField(upload_to="birds/", blank=True, null=True)
 
 

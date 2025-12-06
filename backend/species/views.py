@@ -25,7 +25,7 @@ class HabitatViewSet(viewsets.ModelViewSet):
 
 
 class BirdViewSet(viewsets.ModelViewSet):
-      queryset = Bird.objects.all().prefetch_related("seasons", "habitats", "regions")
+      queryset = Bird.objects.all().prefetch_related("seasons",  "regions")
       serializer_class  = BirdSerializer 
       filter_backends = [filters.OrderingFilter, filters.SearchFilter]
       ordering_fields = ['name']
