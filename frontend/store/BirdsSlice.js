@@ -8,7 +8,7 @@ const BASE_URL = "http://127.0.0.1:8000/api/birds/";
 export const fetchBirds = createAsyncThunk("birds/fetchAll", async () => {
   const res = await fetch(`${BASE_URL}`);
   const data = await res.json();
-  return data.features;
+  return data;
 });
 
 // --------------------------------------------------------------------
