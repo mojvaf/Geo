@@ -28,7 +28,7 @@ function CityItem({ feature }) {
   };
 
   return (
-    <li className="flex items-center gap-[1.6rem] bg-primary-800 overflow-y-auto">
+    <li className="flex items-center gap-[1.6rem] bg-primary-800">
       <Link
         className={`
     ${

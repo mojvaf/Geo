@@ -1,3 +1,7 @@
+import { Suspense } from "react";
+import BirdsList from "@/_components/BirdsList";
+import Spinner from "@/_components/Spinner";
+
 export const metadata = {
   title: "Birds",
 };
@@ -16,6 +20,9 @@ export default function Birds() {
         every melody a gentle reminder of nature’s harmony. Welcome to the
         sanctuary of birds.
       </p>
+      <Suspense fallback={<Spinner />}>
+        <BirdsList />
+      </Suspense>
     </div>
   );
 }
