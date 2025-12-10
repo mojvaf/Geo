@@ -4,17 +4,23 @@ import { useEffect } from "react";
 import { fetchBirds } from "../store/BirdsSlice";
 import Message from "./Message";
 import BirdItem from "./BirdItem";
+import Spinner from "./Spinner";
 
 function BirdsList() {
   const dispatch = useDispatch();
   const birds = useSelector((state) => state.birds.list);
+  const status = useSelector((state) => state.birds.status);
 
   useEffect(() => {
-    dispatch(fetchBirds());
-  }, [dispatch]);
+    if (status === "idle") {
+      dispatch(fetchBirds());
+    }
+  }, [dispatch, status]);
 
-  if (!birds || birds.length === 0)
-    return <Message message={"There is no birds"} />;
+  if (status === "loading") return <Spinner />;
+
+  if (status === "succeeded" && birds.length === 0)
+    return <Message message={"There are no birds"} />;
 
   return (
     <ul>

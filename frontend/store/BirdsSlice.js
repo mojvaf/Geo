@@ -34,6 +34,9 @@ const birdsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchBirds.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(fetchBirds.fulfilled, (state, action) => {
         state.list = action.payload;
         state.status = "succeeded";
