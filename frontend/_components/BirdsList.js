@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchBirds } from "../store/BirdsSlice";
 import Message from "./Message";
+import BirdItem from "./BirdItem";
 
 function BirdsList() {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ function BirdsList() {
 
   return (
     <ul>
-      {birds.map((feature) => (
-        <li key={feature.id}>{feature.name}</li>
+      {birds.map((bird) => (
+        <BirdItem key={bird.id} bird={bird} />
       ))}
     </ul>
   );
