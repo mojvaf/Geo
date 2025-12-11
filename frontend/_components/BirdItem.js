@@ -26,7 +26,7 @@ function BirdItem({ bird }) {
   return (
     <li className="w-full sm:w-1/2 md:w-1/3 p-2">
       <Link
-        href=""
+        href={`/birds/${id}`}
         className="flex flex-col h-[400px] bg-primary-800 rounded-xl overflow-hidden"
       >
         <div className="flex-shrink-0 relative w-full h-64 rounded-xl">

@@ -1,12 +1,15 @@
+"use client";
 import React from "react";
 import { useSearchParams } from "next/navigation";
 import BackButton from "./BackButton";
 
-function Bird() {
+function Bird({ bird }) {
   const searchParams = useSearchParams();
+  const { name } = bird;
+
   return (
     <div>
-      <p>hello</p>
+      <p>{name}</p>
       <BackButton />
     </div>
   );
