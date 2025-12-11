@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import BackButton from "./BackButton";
 
 function City({ city }) {
   const { cityName, date, notes } = city.properties;
 
   const searchParams = useSearchParams();
-  const router = useRouter();
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
 
