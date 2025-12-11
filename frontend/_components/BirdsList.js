@@ -20,14 +20,16 @@ function BirdsList() {
   if (status === "loading") return <Spinner />;
 
   if (status === "succeeded" && birds.length === 0)
-    return <Message message={"There are no birds"} />;
+    return <Message message={"There are no birds."} />;
 
   return (
-    <ul>
-      {birds.map((bird) => (
-        <BirdItem key={bird.id} bird={bird} />
-      ))}
-    </ul>
+    <div className="container mx-auto px-4">
+      <ul className="flex flex-wrap gap-6 items-center justify-center">
+        {birds.map((bird) => (
+          <BirdItem key={bird.id} bird={bird} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
