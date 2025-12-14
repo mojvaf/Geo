@@ -13,7 +13,10 @@ export default function BirdMap({ coordinates }) {
       scrollWheelZoom={false}
       style={{ height: "100%", width: "100%" }}
     >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <TileLayer
+        url="https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}.png"
+        attribution="© Stadia Maps"
+      />
 
       <Polygon positions={latLngs} />
     </MapContainer>
