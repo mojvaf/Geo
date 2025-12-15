@@ -39,7 +39,6 @@ function BirdItem({ bird }) {
           />
         </div>
 
-        {/* Content */}
         <div className="flex-1 flex flex-col justify-between p-4 gap-2">
           <div className="flex-1">
             <div className="text-lg font-bold">{name}</div>

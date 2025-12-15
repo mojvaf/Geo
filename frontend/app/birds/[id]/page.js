@@ -43,12 +43,12 @@ export default function Page({ params }) {
       <div className="flex flex-col md:flex-row gap-8">
         {/* Left Column */}
         <div className="flex-1">
-          <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+          <div className="flex-shrink-0 relative w-full h-64 rounded-xl">
             <Image
               src={image}
               alt={name}
               fill
-              className="object-cover"
+              className="object-contain w-full h-full p-4"
               quality={80}
             />
           </div>
