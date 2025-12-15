@@ -41,7 +41,6 @@ export default function Page({ params }) {
       <h1 className="text-3xl font-bold mb-6">{name}</h1>
 
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Left Column */}
         <div className="flex-1">
           <div className="flex-shrink-0 relative w-full h-64 rounded-xl">
             <Image
@@ -52,12 +51,9 @@ export default function Page({ params }) {
               quality={80}
             />
           </div>
-
           <p className="mt-4 text-lg">{description}</p>
           <BackButton />
         </div>
-
-        {/* Right Column */}
         <div className="flex-1 flex flex-col gap-6">
           <div className="bg-primary-700 p-4 rounded-xl">
             <p>
@@ -73,8 +69,6 @@ export default function Page({ params }) {
               <strong>Country:</strong> {country}
             </p>
           </div>
-
-          {/* Map */}
           <div className="h-[300px] rounded-xl overflow-hidden">
             <BirdMap coordinates={coordinates} />
           </div>
