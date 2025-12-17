@@ -3,10 +3,12 @@
 import { MapContainer, TileLayer, Polygon, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function BirdMap({ features }) {
+export default function BirdMap({ features, seasons }) {
   const polygons = features.map((feature) =>
     feature.geometry.coordinates[0].map(([lng, lat]) => [lat, lng])
   );
+
+  console.log(features);
 
   return (
     <MapContainer
@@ -22,10 +24,7 @@ export default function BirdMap({ features }) {
 
       {polygons.map((poly, idx) => (
         <Polygon key={idx} positions={poly}>
-          <Tooltip sticky>
-            {" "}
-            {poly.properties?.name?.regionName ?? "Unknown region"}
-          </Tooltip>
+          <Tooltip sticky>{seasons}</Tooltip>
         </Polygon>
       ))}
     </MapContainer>
