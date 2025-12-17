@@ -70,7 +70,7 @@ export default function Page({ params }) {
             </p>
           </div>
           <div className="h-[300px] rounded-xl overflow-hidden">
-            <BirdMap coordinates={coordinates} />
+            <BirdMap features={bird.regions.features} />
           </div>
         </div>
       </div>

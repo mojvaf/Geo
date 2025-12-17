@@ -1,14 +1,16 @@
 "use client";
 
-import { MapContainer, TileLayer, Polygon } from "react-leaflet";
+import { MapContainer, TileLayer, Polygon, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function BirdMap({ coordinates }) {
-  const latLngs = coordinates[0].map(([lng, lat]) => [lat, lng]);
+export default function BirdMap({ features }) {
+  const polygons = features.map((feature) =>
+    feature.geometry.coordinates[0].map(([lng, lat]) => [lat, lng])
+  );
 
   return (
     <MapContainer
-      center={latLngs[0]}
+      center={polygons[0][0]}
       zoom={3}
       scrollWheelZoom={false}
       style={{ height: "100%", width: "100%" }}
@@ -18,7 +20,14 @@ export default function BirdMap({ coordinates }) {
         attribution="© Stadia Maps"
       />
 
-      <Polygon positions={latLngs} />
+      {polygons.map((poly, idx) => (
+        <Polygon key={idx} positions={poly}>
+          <Tooltip sticky>
+            {" "}
+            {poly.properties?.name?.regionName ?? "Unknown region"}
+          </Tooltip>
+        </Polygon>
+      ))}
     </MapContainer>
   );
 }
