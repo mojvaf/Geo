@@ -21,8 +21,6 @@ function BirdItem({ bird }) {
     },
   } = bird;
 
-  console.log(bird);
-
   return (
     <li className="w-full sm:w-1/2 md:w-1/3 p-2">
       <Link
