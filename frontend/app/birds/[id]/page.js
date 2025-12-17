@@ -62,15 +62,9 @@ export default function Page({ params }) {
             <p>
               <strong>Seasons:</strong> {seasons.join(", ")}
             </p>
-            <p>
-              <strong>Region:</strong> {regionName}
-            </p>
-            <p>
-              <strong>Country:</strong> {country}
-            </p>
           </div>
           <div className="h-[300px] rounded-xl overflow-hidden">
-            <BirdMap features={bird.regions.features} />
+            <BirdMap features={bird.regions.features} seasons={bird.seasons} />
           </div>
         </div>
       </div>
