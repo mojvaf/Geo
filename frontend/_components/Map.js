@@ -48,8 +48,9 @@ function Map() {
         className="h-full w-full"
       >
         <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          subdomains={["a", "b", "c"]}
           attribution="&copy; OpenStreetMap contributors"
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
 
         {adventures.map((city) => (
