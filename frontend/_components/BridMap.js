@@ -10,18 +10,15 @@ const seasonColors = {
 
 const defaultSeasonColor = "#df9028ff";
 
-const getPolygonColor = (seasons) => {
-  if (seasons.includes("Summer")) return seasonColors.Summer;
-  if (seasons.includes("Winter")) return seasonColors.Winter;
-  return defaultSeasonColor;
+const getSeasonForPolygon = (seasons, index) => {
+  if (seasons.length === 1) return seasons[0];
+  return seasons[index % seasons.length];
 };
 
 export default function BirdMap({ features, seasons }) {
   const polygons = features.map((feature) =>
     feature.geometry.coordinates[0].map(([lng, lat]) => [lat, lng])
   );
-
-  const polygonColor = getPolygonColor(seasons);
 
   return (
     <MapContainer
@@ -35,35 +32,30 @@ export default function BirdMap({ features, seasons }) {
         attribution="© Stadia Maps"
       />
 
-      {polygons.map((poly, idx) => (
-        <Polygon
-          key={idx}
-          positions={poly}
-          pathOptions={{
-            color: polygonColor,
-            fillColor: polygonColor,
-            fillOpacity: 0.45,
-            weight: 2,
-          }}
-        >
-          <Tooltip sticky className="bird-tooltip">
-            <div>
-              <strong>Seasons:</strong>
-              {seasons.map((season, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    color: seasonColors[season] || defaultSeasonColor,
-                    fontWeight: 700,
-                  }}
-                >
-                  {season}
-                </div>
-              ))}
-            </div>
-          </Tooltip>
-        </Polygon>
-      ))}
+      {polygons.map((poly, idx) => {
+        const season = getSeasonForPolygon(seasons, idx);
+        const color = seasonColors[season] || defaultSeasonColor;
+
+        return (
+          <Polygon
+            key={idx}
+            positions={poly}
+            pathOptions={{
+              color,
+              fillColor: color,
+              fillOpacity: 0.45,
+              weight: 2,
+            }}
+          >
+            <Tooltip sticky>
+              <div>
+                <strong>Season:</strong>
+                <div style={{ color, fontWeight: 700 }}>{season}</div>
+              </div>
+            </Tooltip>
+          </Polygon>
+        );
+      })}
     </MapContainer>
   );
 }
