@@ -13,7 +13,7 @@ This project is about exploring **birds**, the **places they live**, and the **s
 
 ## Tech Stack
 
-- **Backend:** Django (Python), numpy, Pandas
+- **Backend:** Django (Python)
 - **Frontend:** React, Next.js and Tailwind
 - **Database:** PostgreSQL
 
