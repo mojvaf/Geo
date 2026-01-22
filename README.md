@@ -1,4 +1,5 @@
 # Birds & Habitats Project
+https://github.com/user-attachments/assets/23bf24e5-06b5-4671-8503-2c99231ee0f5
 
 This project is about exploring **birds**, the **places they live**, and the **seasons** they migrate or reside there. It provides a structured way to record, view, and analyze bird habitats across different regions and times of the year.
 
